@@ -1,0 +1,22 @@
+body {
+}
+
+#slime-food{
+	background-image: url("/Users/tech-a60/project1/images/slimefood.png");
+	background-size: 50px;
+	position: absolute;
+	left: 50px;
+	top: 50px;
+	width: 50px;
+	height: 50px;
+}
+
+#slime{
+	position: fixed;
+	bottom: 10%;
+	left: 50%;
+	background-color: black;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+}

@@ -20,20 +20,19 @@ var modHeight = 1;
 	})
 	$('#score').html(Math.round( $slime.width() * 10 ) / 10);
 
-
 })
 
+// if ($slime hasClass("basic-worker")){
 
+// 	setInterval(function(){
 
-	setInterval(function(){
+// 	($slime).width( modWidth);
+// 	modWidth += 0.1;
 
-	($slime).width( modWidth);
-	modWidth += 0.1;
+// 	($slime).height( modHeight);
+// 	modHeight += 0.1;
 
-	($slime).height( modHeight);
-	modHeight += 0.1;
+// 	$('#score').html(Math.round( $slime.width() * 10 ) / 10);
 
-	$('#score').html(Math.round( $slime.width() * 10 ) / 10);
-
-	}, 100);
-
+// 	}, 100);
+// }

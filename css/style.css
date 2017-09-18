@@ -1,4 +1,5 @@
 body {
+	background-color: #7caeff;
 }
 
 #slime-food{
@@ -29,10 +30,18 @@ body {
 
 }
 
-#basic-worker{
 
+
+#basic-worker{
+	background-image: url("/Users/tech-a60/project1/images/basicworker.png");
+	background-size: 40px;
+	position: relative;
 }
 
 .workers{
-	
+	position: absolute;
+    left: 40px;
+    top: 110px;
+    font-family: 'Antic';font-size: 20px;
+
 }

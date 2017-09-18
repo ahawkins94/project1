@@ -22,13 +22,18 @@ function updateScore(){
 $("#worker-buy").click(function(){
 	if (modWidth > 20){
 
+		$slime.animate({
+        width: '-=20px',
+        height: '-=20px'
+    }, 500);;
+		
 		($slime).width(modWidth);
 		modWidth -= 20;
 
 		($slime).height(modHeight);
 		modHeight -= 20;
 		$workers.append('<div class="basic-worker"></div>')
-
+		updateScore()
 	}
 });
 

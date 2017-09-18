@@ -19,6 +19,10 @@ function updateScore(){
 	$('#score').html(Math.round( $slime.width() * 10 ) / 10);	
 }
 
+$(".btn-minimize").click(function(){
+    $(".shop").fadeToggle();
+  });
+
 ($slimeFood).click(function(){
 
 	addSize();

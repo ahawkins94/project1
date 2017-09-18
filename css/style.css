@@ -1,5 +1,16 @@
 body {
 	background-color: #7caeff;
+	margin: 0;
+}
+
+ul {
+	padding-left: 20px;
+	list-style-type: none;
+
+}
+
+h3{
+    margin-top: 5px;
 }
 
 #slime-food{
@@ -16,11 +27,12 @@ body {
 	position: fixed;
 	bottom: 10%;
 	left: 50%;
-	background-color: black;
+	background-color: #00ff26;
 	width: 1px;
 	height: 1px;
 	border-radius: 50%;
 }
+
 
 #score{
 	position: absolute;
@@ -29,6 +41,44 @@ body {
     font-family: 'Antic';font-size: 40px;
 
 }
+.shop-title{
+
+	position: absolute;
+	display: inline-block;
+    right: 40px;
+    top: 110px;
+    font-family: 'Antic';font-size: 20px;
+    height: 40px;
+    width: 300px;
+    background: rgba(54, 25, 25, .2);
+    text-align: center;
+    border-radius: 3px
+}
+.shop{
+	position: absolute;
+	display: inline-block;
+    right: 0px;
+    top: 40px;
+    font-family: 'Antic';font-size: 20px;
+    height: 500px;
+    width: 300px;
+    background: rgba(54, 25, 25, .1);
+    overflow: scroll;
+    text-align: left;
+    border-radius: 3px
+}
+
+.btn-minimize {
+	position: absolute;
+	background: rgba(54, 25, 25, .0);
+	height: 40px;
+	width: 300px;
+    right: 0px;
+    top: 0px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
 
 .basic-worker{
 	background-image: url("/Users/tech-a60/project1/images/basicworker.png");
@@ -47,6 +97,6 @@ body {
     top: 110px;
     font-family: 'Antic';font-size: 20px;
     height: 500px;
-    width: 500px;
+    width: 300px;
 
 }

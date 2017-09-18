@@ -8,16 +8,26 @@ var modHeight = 1;
 
 function addSize(){
 
-	($slime).width( modWidth);
+	($slime).width(modWidth);
 	modWidth += 0.1;
 
-	($slime).height( modHeight);
+	($slime).height(modHeight);
 	modHeight += 0.1;
 }
 
 function updateScore(){
 	$('#score').html(Math.round( $slime.width() * 10 ) / 10);	
 }
+
+$("#worker-buy").click(function(){
+	if (modWidth > 20){
+
+		$slime.width(-20);
+		$slime.height(-20);
+		$workers.append('<div class="basic-worker"></div>')
+
+	}
+});
 
 $(".btn-minimize").click(function(){
     $(".shop").fadeToggle();

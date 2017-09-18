@@ -23,10 +23,18 @@ h3{
 	height: 50px;
 }
 
+#slime-container{
+	position: absolute;	
+	left: 10%;
+	top: 550px;
+	height: 20px;
+	width: 20px;
+}
+
 #slime{
-	position: fixed;
-	bottom: 10%;
-	left: 50%;
+	position: static;
+/*	bottom: 10%;
+	left: 50%;*/
 	background-color: #00ff26;
 	width: 1px;
 	height: 1px;
@@ -79,7 +87,6 @@ h3{
     border-radius: 5px;
 }
 
-
 .basic-worker{
 	background-image: url("/Users/tech-a60/project1/images/basicworker.png");
 	background-size: 40px;
@@ -98,5 +105,40 @@ h3{
     font-family: 'Antic';font-size: 20px;
     height: 500px;
     width: 300px;
-
 }
+
+#worker-buy{
+	height: 20px;
+	width: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

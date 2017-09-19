@@ -10,36 +10,15 @@ var basicWorker = 5;
 var slimeFeeder = 10;
 
 function addSize(){
-
 	($slime).width(modWidth);
 	modWidth += 0.1;
-
 	($slime).height(modHeight);
 	modHeight += 0.1;
 }
 
-
-$(".basic-worker").on('click', function(){
-	$this = $(this);
-	if ($this.hasClass('onBench')){
-		console.log('yaes')
-		$this.appendTo("#slime-container .workers")
-		$this.addClass('offBench').removeClass('onBench')	
-	} else {
-		console.log('cdlkicksed')
-		$this.appendTo(".bench");
-		$this.addClass('onBench').removeClass('offBench')
-	}
-});
-
-
-
-
 function decreaseSize(){
-
 	($slime).width(modWidth);
 	modWidth -= 0.1;
-
 	($slime).height(modHeight);
 	modHeight -= 0.1;
 }
@@ -47,6 +26,26 @@ function decreaseSize(){
 function updateScore(){
 	$('#score').html(Math.round( $slime.width() * 10 ) / 10);	
 }
+
+function addToBench(){
+	$this.appendTo(".bench");
+	$this.addClass('onBench').removeClass('offBench')	
+}
+
+function addToWorkers(){
+	$this.appendTo("#slime-container .workers")
+	$this.addClass('offBench').removeClass('onBench')
+}
+
+$(".bench").on('click', ".basic-worker", function(){
+	$this = $(this);
+	addToWorkers();
+});
+
+$(".workers").on('click', ".basic-worker", function(){
+	$this = $(this);	
+	addToBench();
+});
 
 $(".feeder-buy").click(function(){
 	if (modWidth > slimeFeeder){

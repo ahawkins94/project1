@@ -18,6 +18,23 @@ function addSize(){
 	modHeight += 0.1;
 }
 
+
+$(".basic-worker").on('click', function(){
+	$this = $(this);
+	if ($this.hasClass('onBench')){
+		console.log('yaes')
+		$this.appendTo("#slime-container .workers")
+		$this.addClass('offBench').removeClass('onBench')	
+	} else {
+		console.log('cdlkicksed')
+		$this.appendTo(".bench");
+		$this.addClass('onBench').removeClass('offBench')
+	}
+});
+
+
+
+
 function decreaseSize(){
 
 	($slime).width(modWidth);
@@ -64,7 +81,7 @@ $(".worker-buy").click(function(){
 
 		($slime).height(modHeight);
 		modHeight -= basicWorker;
-		$bench.append('<div class="basic-worker"></div>');
+		$bench.append('<div class="basic-worker onBench"></div>');
 		updateScore();
 		basicWorker = basicWorker + 15;
 		$(".worker-buy span").html(basicWorker)

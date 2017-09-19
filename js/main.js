@@ -47,6 +47,16 @@ $(".workers").on('click', ".basic-worker", function(){
 	addToBench();
 });
 
+$(".bench").on('click', ".slime-feeder", function(){
+	$this = $(this);
+	addToWorkers();
+});
+
+$(".workers").on('click', ".slime-feeder", function(){
+	$this = $(this);	
+	addToBench();
+});
+
 $(".feeder-buy").click(function(){
 	if (modWidth > slimeFeeder){
 
@@ -60,7 +70,7 @@ $(".feeder-buy").click(function(){
 
 		($slime).height(modHeight);
 		modHeight -= slimeFeeder;
-		$bench.append('<div class="slime-feeder"></div>');
+		$bench.append('<div class="slime-feeder onBench"><div class="stress-bar"><div class="stress"></div></div</div>');
 		updateScore();
 		slimeFeeder = slimeFeeder + 30;
 		$(".feeder-buy span").html(slimeFeeder)
@@ -80,7 +90,7 @@ $(".worker-buy").click(function(){
 
 		($slime).height(modHeight);
 		modHeight -= basicWorker;
-		$bench.append('<div class="basic-worker onBench"></div>');
+		$bench.append('<div class="basic-worker onBench"><div class="stress-bar"><div class="stress"></div></div</div>');
 		updateScore();
 		basicWorker = basicWorker + 15;
 		$(".worker-buy span").html(basicWorker)
@@ -125,3 +135,5 @@ setInterval(function slimeDecrease(e){
 				clearInterval();
 		};
 	}, 200);
+
+

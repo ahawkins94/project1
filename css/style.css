@@ -107,10 +107,27 @@ h3{
     width: 300px;
 }
 
-#worker-buy{
-	height: 20px;
-	width: 20px;
+.slime-feeder{
+	background-image: url("/Users/tech-a60/project1/images/slimefeeder.png");
+	background-size: 40px;
+	display:inline-block;
+	background-repeat: no-repeat;
+	position: relative;
+	width: 50px;
+	height: 60px;
 }
+
+.worker-buy{
+	height: 20px;
+	width: 30px;
+}
+
+.feeder-buy{
+	height: 20px;
+	width: 30px;
+}
+
+
 
 
 

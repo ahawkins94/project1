@@ -5,7 +5,8 @@ var sLeft = $slime.position();
 var $workers = $(".workers")
 var modWidth = 1;
 var modHeight = 1;
-var basicWorker = 20;
+var basicWorker = 5;
+var slimeFeeder = 10;
 
 function addSize(){
 
@@ -29,12 +30,32 @@ function updateScore(){
 	$('#score').html(Math.round( $slime.width() * 10 ) / 10);	
 }
 
-$("#worker-buy").click(function(){
+$(".feeder-buy").click(function(){
+	if (modWidth > slimeFeeder){
+
+		$slime.animate({
+        width: '-=' + slimeFeeder + 'px',
+        height: '-=' + slimeFeeder + 'px'
+    }, 500);;
+		
+		($slime).width(modWidth);
+		modWidth -= slimeFeeder;
+
+		($slime).height(modHeight);
+		modHeight -= slimeFeeder;
+		$workers.append('<div class="slime-feeder"></div>');
+		updateScore();
+		slimeFeeder = slimeFeeder + 15;
+		$(".feeder-buy span").html(slimeFeeder)
+	}
+});
+
+$(".worker-buy").click(function(){
 	if (modWidth > basicWorker){
 
 		$slime.animate({
-        width: '-=20px',
-        height: '-=20px'
+        width: '-=' + basicWorker + 'px',
+        height: '-=' + basicWorker + 'px'
     }, 500);;
 		
 		($slime).width(modWidth);
@@ -42,8 +63,10 @@ $("#worker-buy").click(function(){
 
 		($slime).height(modHeight);
 		modHeight -= basicWorker;
-		$workers.append('<div class="basic-worker"></div>')
-		updateScore()
+		$workers.append('<div class="basic-worker"></div>');
+		updateScore();
+		basicWorker = basicWorker + 15;
+		$("#worker-buy span").html(basicWorker)
 	}
 });
 
@@ -69,6 +92,14 @@ setInterval(function(){
 	} 
 }, 300);
 
+setInterval(function(){
+	for (i = 0; i < $workers.find(".slime-feeder").length; i++){
+		addSize();
+		updateScore();
+		clearInterval();
+	} 
+}, 150);
+
 setInterval(function slimeDecrease(e){
 
 	if ($("#slime").width() > 22){
@@ -77,4 +108,3 @@ setInterval(function slimeDecrease(e){
 				clearInterval();
 		};
 	}, 200);
-// }, 100);

@@ -5,6 +5,7 @@ var sLeft = $slime.position();
 var $workers = $(".workers")
 var modWidth = 1;
 var modHeight = 1;
+var basicWorker = 20;
 
 function addSize(){
 
@@ -15,12 +16,21 @@ function addSize(){
 	modHeight += 0.1;
 }
 
+function decreaseSize(){
+
+	($slime).width(modWidth);
+	modWidth -= 0.1;
+
+	($slime).height(modHeight);
+	modHeight -= 0.1;
+}
+
 function updateScore(){
 	$('#score').html(Math.round( $slime.width() * 10 ) / 10);	
 }
 
 $("#worker-buy").click(function(){
-	if (modWidth > 20){
+	if (modWidth > basicWorker){
 
 		$slime.animate({
         width: '-=20px',
@@ -28,10 +38,10 @@ $("#worker-buy").click(function(){
     }, 500);;
 		
 		($slime).width(modWidth);
-		modWidth -= 20;
+		modWidth -= basicWorker;
 
 		($slime).height(modHeight);
-		modHeight -= 20;
+		modHeight -= basicWorker;
 		$workers.append('<div class="basic-worker"></div>')
 		updateScore()
 	}
@@ -57,7 +67,14 @@ setInterval(function(){
 		updateScore();
 		clearInterval();
 	} 
+}, 300);
 
-}, 100);
+setInterval(function slimeDecrease(e){
 
-//for loop inside interval to add size per worker. workers.length
+	if ($("#slime").width() > 22){
+				decreaseSize();
+				updateScore();
+				clearInterval();
+		};
+	}, 200);
+// }, 100);

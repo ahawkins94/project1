@@ -2,7 +2,8 @@
 var $slime = $("#slime");
 var $slimeFood = $("#slime-food");
 var sLeft = $slime.position();
-var $workers = $(".workers")
+var $bench = $(".bench");
+var $workers = $(".workers");
 var modWidth = 1;
 var modHeight = 1;
 var basicWorker = 5;
@@ -43,7 +44,7 @@ $(".feeder-buy").click(function(){
 
 		($slime).height(modHeight);
 		modHeight -= slimeFeeder;
-		$workers.append('<div class="slime-feeder"></div>');
+		$bench.append('<div class="slime-feeder"></div>');
 		updateScore();
 		slimeFeeder = slimeFeeder + 30;
 		$(".feeder-buy span").html(slimeFeeder)
@@ -63,7 +64,7 @@ $(".worker-buy").click(function(){
 
 		($slime).height(modHeight);
 		modHeight -= basicWorker;
-		$workers.append('<div class="basic-worker"></div>');
+		$bench.append('<div class="basic-worker"></div>');
 		updateScore();
 		basicWorker = basicWorker + 15;
 		$(".worker-buy span").html(basicWorker)

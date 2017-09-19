@@ -45,7 +45,7 @@ $(".feeder-buy").click(function(){
 		modHeight -= slimeFeeder;
 		$workers.append('<div class="slime-feeder"></div>');
 		updateScore();
-		slimeFeeder = slimeFeeder + 15;
+		slimeFeeder = slimeFeeder + 30;
 		$(".feeder-buy span").html(slimeFeeder)
 	}
 });
@@ -66,7 +66,7 @@ $(".worker-buy").click(function(){
 		$workers.append('<div class="basic-worker"></div>');
 		updateScore();
 		basicWorker = basicWorker + 15;
-		$("#worker-buy span").html(basicWorker)
+		$(".worker-buy span").html(basicWorker)
 	}
 });
 

@@ -8,6 +8,7 @@ var modWidth = 1;
 var modHeight = 1;
 var buyWorker = 0;
 var buyFeeder = 10;
+var buyDoctor = 15;
 var count = 0
 var $basicWorker;
 var $stress = $(".stress");
@@ -42,11 +43,32 @@ function addMoreSize(){
 	modHeight += 0.6;
 }
 
+function addEvenMoreSize(){
+	($slime).width(modWidth);
+	modWidth += 1;
+	($slime).height(modHeight);
+	modHeight += 1;
+}
+
 function decreaseSize(){
 	($slime).width(modWidth);
 	modWidth -= 0.1;
 	($slime).height(modHeight);
 	modHeight -= 0.1;
+}
+
+function decreaseMoreSize(){
+	($slime).width(modWidth);
+	modWidth -= 0.5;
+	($slime).height(modHeight);
+	modHeight -= 0.5;
+}
+
+function decreaseEvenMoreSize(){
+	($slime).width(modWidth);
+	modWidth -= 1;
+	($slime).height(modHeight);
+	modHeight -= 1;
 }
 
 function workerFunction(){
@@ -107,6 +129,33 @@ function feederFunction(){
 	})
 }
 
+function doctorFunction(){
+	$('.stress').each(function(i, v){
+		var $this = $(this);
+			if ($this.hasClass('offBench')){
+				var id = $this.closest('.slime-doctor').attr('id');
+				workerList[id]++;
+				if (workerList[id] > 100){
+					workerList[id] = 100;
+				}
+				if (workerList[id] < 50){
+					addEvenMoreSize();
+				}else if (workerList[id] < 85){
+					addMoreSize();
+				}else if (workerList[id] > 85){
+					decreaseSize();
+				}
+
+			} else if ($this.hasClass('onBench')){
+				var id = $this.closest('.slime-doctor').attr('id');
+				workerList[id]--;
+				if (workerList[id] < 0){
+					workerList[id] = 0;
+				}
+			}
+	})
+}
+
 function updateScore(){
 	$('#score').html(Math.round( $slime.width() * 10 ) / 10);	
 }
@@ -142,6 +191,43 @@ $(".bench").on('click', ".slime-feeder", function(){
 $(".workers").on('click', ".slime-feeder", function(){
 	$this = $(this);	
 	addToBench();
+});
+
+$(".bench").on('click', ".slime-doctor", function(){
+	$this = $(this);
+	addToWorkers();
+});
+
+$(".workers").on('click', ".slime-doctor", function(){
+	$this = $(this);	
+	addToBench();
+});
+
+$(".doctor-buy").click(function(){
+	if (modWidth > buyDoctor){
+
+		$slime.animate({
+        width: '-=' + buyDoctor + 'px',
+        height: '-=' + buyDoctor + 'px'
+    }, 500);;
+
+		count++
+		
+		($slime).width(modWidth);
+		modWidth -= buyDoctor;
+
+		($slime).height(modHeight);
+		modHeight -= buyDoctor;
+		$bench.append('<div class="slime-doctor onBench" id="w' + count + '"><div class="stress-bar onBench"><div class="stress" label="w' + count + '"></div></div></div</div>');
+		updateScore();
+		buyDoctor = buyDoctor + 50;
+		$(".doctor-buy span").html(buyDoctor)
+
+		workerList['w' + count] = 0;
+		$slimeDoctor = $('.slime-doctor');
+		$stress = $(".stress");
+	
+	}
 });
 
 $(".feeder-buy").click(function(){
@@ -211,38 +297,27 @@ $(".btn-minimize").click(function(){
 	updateScore();
 })
 
-
-// setInterval(function(){
-// 	for (i = 0; i < $workers.find(".basic-worker").length; i++){
-// 		if (workerList[id] < 50){
-// 			addSize();
-// 		}
-// 		
-// 		clearInterval();
-// 	} 
-// }, 300);
-
-// setInterval(function(){
-// 	for (i = 0; i < $workers.find(".slime-feeder").length; i++){
-
-// 		addSize();
-// 		updateScore();
-// 		clearInterval();
-// 	} 
-// }, 150);
-
 setInterval(function slimeDecrease(e){
 
 	if ($("#slime").width() > 22){
 				decreaseSize();
 				updateScore();
 				clearInterval();
-		};
+		}else if ($("#slime").width() > 100){
+				decreaseMoreSize();
+				updateScore();
+				clearInterval();
+		}else if ($("#slime").width() > 300){
+				decreaseEvenMoreSize();
+				updateScore();
+				clearInterval();
+		}
 	}, 200);
 
 setInterval(function(){
 		workerFunction()
 		feederFunction();
+		doctorFunction();
 		updateScore();
 		clearInterval();
 }, 1000);

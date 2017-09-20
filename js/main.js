@@ -55,12 +55,14 @@ function updateScore(){
 
 function addToBench(){
 	$this.appendTo(".bench");
+	$this.find("*").addClass('onBench').removeClass('offBench')
 	$this.addClass('onBench').removeClass('offBench')	
 }
 
 function addToWorkers(){
 	$this.appendTo("#slime-container .workers")
 	$this.addClass('offBench').removeClass('onBench')
+	$this.find("*").addClass('offBench').removeClass('onBench')
 }
 
 $(".bench").on('click', ".basic-worker", function(){
@@ -119,7 +121,7 @@ $(".worker-buy").click(function(){
 
 	($slime).height(modHeight);
 	modHeight -= buyWorker;
-	$bench.append('<div class="basic-worker onBench"><div class="stress-bar onBench" id="w' + count + '"><div class="stress"></div></div</div>');
+	$bench.append('<div class="basic-worker onBench w' + count + '"><div class="stress-bar onBench w' + count + '"><div class="stress"></div></div</div>');
 	updateScore();
 	buyWorker = buyWorker + 15;
 	$(".worker-buy span").html(buyWorker)
@@ -175,14 +177,18 @@ setInterval(function(){
 		increaseStress();
 		console.log(workerList)
 
-		// $stress[0].css("width", stressWidth + "px")
-		// stressWidth += 5;
-		// console.log($stress)
+		$stress.css("width", stressWidth + "px")
+		stressWidth += 0.4;
+		console.log($stress)
 
-	if (workerList['w' + count] == ceiling){
-		up = false
+		if (workerList['w' + count] == ceiling){
+			up = false
+		}
+	}else {
+		increaseStress();
+		$stress.css("width", stressWidth + "px")
+		stressWidth -= 0.4;
 	}
-	};
 }, 1000);
 		
 

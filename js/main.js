@@ -36,23 +36,28 @@ function decreaseSize(){
 }
 
 function increaseStress(){
+	console.log($('.stress'))
 	$('.stress').each(function(i, v){
 		// console.log(this.classList[1])
-		var value = workerList[this.classList[1]];
-		console.log(value)
-		if (this.classList.value.includes('stress')) {
-			if (this.classList.value.includes('offBench')){
-				var workernum = 'w' + (parseInt(i) + 1);
-				workerList[workernum]++;
-				$(this).css("width", value + "px")
+		// var value = workerList[$(this).classList[1]];
+		// console.log(value)
+		// if ($(this).hasClass('stress')) {
+			if ($(this).hasClass('offBench')){
+				// var workernum = 'w' + ($('.stress').length - parseInt(i));
+				var id = $(this).closest('.basic-worker').attr('id');
+				console.log('id: ' + id);
+				workerList[id]++;
+				$(this).css("width", "+=0.4px")
 				// stressWidth += 0.4;
-			} else if (this.classList.value.includes('onBench')){
-				var workernum = 'w' + (parseInt(i) + 1);
-				workerList[workernum]--;
-				$(this).css("width", value + "px")
+			} else if ($(this).hasClass('onBench')){
+				// var workernum = 'w' + ($('.stress').length - parseInt(i));
+				var id = $(this).closest('.basic-worker').attr('id');
+				console.log('id: ' + id);
+				workerList[id]--;
+				$(this).css("width", "-=0.4px")
 				// stressWidth -= 0.4;
 			}
-		}
+		// }
 	})
 }
 
@@ -133,7 +138,7 @@ $(".worker-buy").click(function(){
 
 	($slime).height(modHeight);
 	modHeight -= buyWorker;
-	$bench.append('<div class="basic-worker onBench w' + count + '"><div class="stress-bar onBench"><div class="stress w' + count + '"></div></div</div>');
+	$bench.append('<div class="basic-worker onBench" id="w' + count + '"><div class="stress-bar onBench"><div class="stress" label="w' + count + '"></div></div></div</div>');
 	updateScore();
 	buyWorker = buyWorker + 2;
 	$(".worker-buy span").html(buyWorker)

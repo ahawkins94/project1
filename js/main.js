@@ -38,26 +38,27 @@ function decreaseSize(){
 function increaseStress(){
 	console.log($('.stress'))
 	$('.stress').each(function(i, v){
-		// console.log(this.classList[1])
-		// var value = workerList[$(this).classList[1]];
-		// console.log(value)
-		// if ($(this).hasClass('stress')) {
 			if ($(this).hasClass('offBench')){
-				// var workernum = 'w' + ($('.stress').length - parseInt(i));
 				var id = $(this).closest('.basic-worker').attr('id');
 				console.log('id: ' + id);
 				workerList[id]++;
 				$(this).css("width", "+=0.4px")
-				// stressWidth += 0.4;
+				if (workerList[id] > 100){
+					workerList[id] = 0;
+				}
+				if (workerList[id] < 50){
+					addSize();
+				}
+
 			} else if ($(this).hasClass('onBench')){
-				// var workernum = 'w' + ($('.stress').length - parseInt(i));
 				var id = $(this).closest('.basic-worker').attr('id');
 				console.log('id: ' + id);
 				workerList[id]--;
 				$(this).css("width", "-=0.4px")
-				// stressWidth -= 0.4;
+				if (workerList[id] < 0){
+					workerList[id] = 0;
+				}
 			}
-		// }
 	})
 }
 
@@ -163,16 +164,19 @@ $(".btn-minimize").click(function(){
 })
 
 
-setInterval(function(){
-	for (i = 0; i < $workers.find(".basic-worker").length; i++){
-		addSize();
-		updateScore();
-		clearInterval();
-	} 
-}, 300);
+// setInterval(function(){
+// 	for (i = 0; i < $workers.find(".basic-worker").length; i++){
+// 		if (workerList[id] < 50){
+// 			addSize();
+// 		}
+// 		
+// 		clearInterval();
+// 	} 
+// }, 300);
 
 setInterval(function(){
 	for (i = 0; i < $workers.find(".slime-feeder").length; i++){
+
 		addSize();
 		updateScore();
 		clearInterval();
@@ -189,25 +193,8 @@ setInterval(function slimeDecrease(e){
 	}, 200);
 
 setInterval(function(){
-	if (up == true && $basicWorker.hasClass("offBench")){
-		//var ceiling = 40;
-//		var floor = 0;
 		increaseStress();
-		console.log(workerList)
-
-		// $stress.css("width", stressWidth + "px")
-		// stressWidth += 0.4;
-		console.log($stress)
-
-		//if (workerList['w' + count] == ceiling){
-	//		up = false
-		//}
-	}else {
-		increaseStress();
-		console.log(workerList)
-		// $stress.css("width", stressWidth + "px")
-		// stressWidth -= 0.4;
-	}
+		updateScore();
 }, 1000);
 		
 

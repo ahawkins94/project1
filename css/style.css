@@ -189,12 +189,14 @@ h3{
 .stress {
 	position: absolute;
     width: 0px;
+    max-width: 40px;
+    min-width: 0px;
     height: 6px;
     bottom: 2%;
     border-radius: 10%;
     background: black;
     border-color: black;
-    overflow: hidden;  
+    overflow: initial;  
 }
 
 

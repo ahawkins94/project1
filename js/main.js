@@ -4,7 +4,6 @@ var $slimeFood = $("#slime-food");
 var sLeft = $slime.position();
 var $bench = $(".bench");
 var $workers = $(".workers");
-var $basicWorker = $(".basic-worker");
 var modWidth = 1;
 var modHeight = 1;
 var buyWorker = 5;
@@ -28,6 +27,11 @@ function decreaseSize(){
 	modHeight -= 0.1;
 }
 
+function increaseStress(){
+	workerList['w' + count]++
+	console.log(workerList['w' + count]);
+}
+
 function updateScore(){
 	$('#score').html(Math.round( $slime.width() * 10 ) / 10);	
 }
@@ -41,10 +45,6 @@ function addToWorkers(){
 	$this.appendTo("#slime-container .workers")
 	$this.addClass('offBench').removeClass('onBench')
 }
-
-// function increaseStress(){
-// 	if 
-// }
 
 $(".bench").on('click', ".basic-worker", function(){
 	$this = $(this);
@@ -95,18 +95,23 @@ $(".worker-buy").click(function(){
         height: '-=' + buyWorker + 'px'
     }, 500);;
 		
+		count++
+
 		($slime).width(modWidth);
 		modWidth -= buyWorker;
 
 		($slime).height(modHeight);
 		modHeight -= buyWorker;
-		$bench.append('<div class="basic-worker onBench"><div class="stress-bar"><div class="stress"></div></div</div>');
+		$bench.append('<div class="basic-worker onBench"><div class="stress-bar" id="w' + count + '"><div class="stress"></div></div</div>');
 		updateScore();
 		buyWorker = buyWorker + 15;
 		$(".worker-buy span").html(buyWorker)
 
-		count++
-		workerList['w' + count] = {stress: 0}
+		workerList['w' + count] = 0;
+		console.log(workerList);
+
+		var workerStress = $('"#w' + count + '"');
+
 	}
 });
 
@@ -148,5 +153,12 @@ setInterval(function slimeDecrease(e){
 				clearInterval();
 		};
 	}, 200);
+
+setInterval(function(){
+	if (workerStress.hasClass("offBench")){
+		increaseStress();
+	};
+}, 1000);
+		
 
 

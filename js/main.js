@@ -20,6 +20,7 @@ var up = true;
 var stressWidth = 0;
 
 
+
 function addSize(){
 	($slime).width(modWidth);
 	modWidth += 0.1;
@@ -36,17 +37,27 @@ function decreaseSize(){
 
 function increaseStress(){
 	$('.stress').each(function(i, v){
+		// console.log(this.classList[1])
+		var value = workerList[this.classList[1]];
+		console.log(value)
 		if (this.classList.value.includes('stress')) {
 			if (this.classList.value.includes('offBench')){
 				var workernum = 'w' + (parseInt(i) + 1);
 				workerList[workernum]++;
+				$(this).css("width", value + "px")
+				// stressWidth += 0.4;
 			} else if (this.classList.value.includes('onBench')){
 				var workernum = 'w' + (parseInt(i) + 1);
 				workerList[workernum]--;
+				$(this).css("width", value + "px")
+				// stressWidth -= 0.4;
 			}
 		}
 	})
-	
+}
+
+function increaseStressBar(){
+
 }
 
 function updateScore(){
@@ -73,6 +84,7 @@ $(".bench").on('click', ".basic-worker", function(){
 $(".workers").on('click', ".basic-worker", function(){
 	$this = $(this);	
 	addToBench();
+	console.log($basicWorker[0].classList[1])
 });
 
 $(".bench").on('click', ".slime-feeder", function(){
@@ -121,9 +133,9 @@ $(".worker-buy").click(function(){
 
 	($slime).height(modHeight);
 	modHeight -= buyWorker;
-	$bench.append('<div class="basic-worker onBench w' + count + '"><div class="stress-bar onBench w' + count + '"><div class="stress"></div></div</div>');
+	$bench.append('<div class="basic-worker onBench w' + count + '"><div class="stress-bar onBench"><div class="stress w' + count + '"></div></div</div>');
 	updateScore();
-	buyWorker = buyWorker + 15;
+	buyWorker = buyWorker + 2;
 	$(".worker-buy span").html(buyWorker)
 
 	workerList['w' + count] = 0;
@@ -173,21 +185,23 @@ setInterval(function slimeDecrease(e){
 
 setInterval(function(){
 	if (up == true && $basicWorker.hasClass("offBench")){
-		var ceiling = 40;
+		//var ceiling = 40;
+//		var floor = 0;
 		increaseStress();
 		console.log(workerList)
 
-		$stress.css("width", stressWidth + "px")
-		stressWidth += 0.4;
+		// $stress.css("width", stressWidth + "px")
+		// stressWidth += 0.4;
 		console.log($stress)
 
-		if (workerList['w' + count] == ceiling){
-			up = false
-		}
+		//if (workerList['w' + count] == ceiling){
+	//		up = false
+		//}
 	}else {
 		increaseStress();
-		$stress.css("width", stressWidth + "px")
-		stressWidth -= 0.4;
+		console.log(workerList)
+		// $stress.css("width", stressWidth + "px")
+		// stressWidth -= 0.4;
 	}
 }, 1000);
 		

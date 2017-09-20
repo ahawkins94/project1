@@ -6,12 +6,19 @@ var $bench = $(".bench");
 var $workers = $(".workers");
 var modWidth = 1;
 var modHeight = 1;
-var buyWorker = 5;
+var buyWorker = 0;
 var buyFeeder = 10;
 var count = 0
+var $basicWorker;
+var $stress = $(".stress");
+var stressBar = 0.4;
 var workerList = {
 
 }
+var up = true;
+
+var stressWidth = 0;
+
 
 function addSize(){
 	($slime).width(modWidth);
@@ -28,8 +35,18 @@ function decreaseSize(){
 }
 
 function increaseStress(){
-	workerList['w' + count]++
-	console.log(workerList['w' + count]);
+	$('.stress').each(function(i, v){
+		if (this.classList.value.includes('stress')) {
+			if (this.classList.value.includes('offBench')){
+				var workernum = 'w' + (parseInt(i) + 1);
+				workerList[workernum]++;
+			} else if (this.classList.value.includes('onBench')){
+				var workernum = 'w' + (parseInt(i) + 1);
+				workerList[workernum]--;
+			}
+		}
+	})
+	
 }
 
 function updateScore(){
@@ -93,25 +110,23 @@ $(".worker-buy").click(function(){
 		$slime.animate({
         width: '-=' + buyWorker + 'px',
         height: '-=' + buyWorker + 'px'
-    }, 500);;
+    }, 500);
 		
-		count++
+	count++
 
-		($slime).width(modWidth);
-		modWidth -= buyWorker;
+	($slime).width(modWidth);
+	modWidth -= buyWorker;
 
-		($slime).height(modHeight);
-		modHeight -= buyWorker;
-		$bench.append('<div class="basic-worker onBench"><div class="stress-bar" id="w' + count + '"><div class="stress"></div></div</div>');
-		updateScore();
-		buyWorker = buyWorker + 15;
-		$(".worker-buy span").html(buyWorker)
+	($slime).height(modHeight);
+	modHeight -= buyWorker;
+	$bench.append('<div class="basic-worker onBench"><div class="stress-bar onBench" id="w' + count + '"><div class="stress"></div></div</div>');
+	updateScore();
+	buyWorker = buyWorker + 15;
+	$(".worker-buy span").html(buyWorker)
 
-		workerList['w' + count] = 0;
-		console.log(workerList);
-
-		var workerStress = $('"#w' + count + '"');
-
+	workerList['w' + count] = 0;
+	$basicWorker = $('.basic-worker');
+	$stress = $(".stress");
 	}
 });
 
@@ -155,8 +170,18 @@ setInterval(function slimeDecrease(e){
 	}, 200);
 
 setInterval(function(){
-	if (workerStress.hasClass("offBench")){
+	if (up == true && $basicWorker.hasClass("offBench")){
+		var ceiling = 40;
 		increaseStress();
+		console.log(workerList)
+
+		// $stress[0].css("width", stressWidth + "px")
+		// stressWidth += 5;
+		// console.log($stress)
+
+	if (workerList['w' + count] == ceiling){
+		up = false
+	}
 	};
 }, 1000);
 		

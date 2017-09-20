@@ -180,6 +180,7 @@ h3{
     width: 40px;
     height: 6px;
     bottom: 2%;
+    border-radius: 10%;
     background: grey;
     border-color: grey;
     overflow: hidden;   
@@ -190,6 +191,7 @@ h3{
     width: 0px;
     height: 6px;
     bottom: 2%;
+    border-radius: 10%;
     background: black;
     border-color: black;
     overflow: hidden;  

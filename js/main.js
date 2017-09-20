@@ -4,10 +4,15 @@ var $slimeFood = $("#slime-food");
 var sLeft = $slime.position();
 var $bench = $(".bench");
 var $workers = $(".workers");
+var $basicWorker = $(".basic-worker");
 var modWidth = 1;
 var modHeight = 1;
-var basicWorker = 5;
-var slimeFeeder = 10;
+var buyWorker = 5;
+var buyFeeder = 10;
+var count = 0
+var workerList = {
+
+}
 
 function addSize(){
 	($slime).width(modWidth);
@@ -37,6 +42,10 @@ function addToWorkers(){
 	$this.addClass('offBench').removeClass('onBench')
 }
 
+// function increaseStress(){
+// 	if 
+// }
+
 $(".bench").on('click', ".basic-worker", function(){
 	$this = $(this);
 	addToWorkers();
@@ -58,42 +67,46 @@ $(".workers").on('click', ".slime-feeder", function(){
 });
 
 $(".feeder-buy").click(function(){
-	if (modWidth > slimeFeeder){
+	if (modWidth > buyFeeder){
 
 		$slime.animate({
-        width: '-=' + slimeFeeder + 'px',
-        height: '-=' + slimeFeeder + 'px'
+        width: '-=' + buyFeeder + 'px',
+        height: '-=' + buyFeeder + 'px'
     }, 500);;
 		
 		($slime).width(modWidth);
-		modWidth -= slimeFeeder;
+		modWidth -= buyFeeder;
 
 		($slime).height(modHeight);
-		modHeight -= slimeFeeder;
-		$bench.append('<div class="slime-feeder onBench"><div class="stress-bar"><div class="stress"></div></div</div>');
+		modHeight -= buyFeeder;
+		$bench.append('<div class="slime-feeder onBench"><div class="stress-bar"><div class="stress"></div></div></div</div>');
 		updateScore();
-		slimeFeeder = slimeFeeder + 30;
-		$(".feeder-buy span").html(slimeFeeder)
+		buyFeeder = buyFeeder + 30;
+		$(".feeder-buy span").html(buyFeeder)
+
 	}
 });
 
 $(".worker-buy").click(function(){
-	if (modWidth > basicWorker){
+	if (modWidth > buyWorker){
 
 		$slime.animate({
-        width: '-=' + basicWorker + 'px',
-        height: '-=' + basicWorker + 'px'
+        width: '-=' + buyWorker + 'px',
+        height: '-=' + buyWorker + 'px'
     }, 500);;
 		
 		($slime).width(modWidth);
-		modWidth -= basicWorker;
+		modWidth -= buyWorker;
 
 		($slime).height(modHeight);
-		modHeight -= basicWorker;
+		modHeight -= buyWorker;
 		$bench.append('<div class="basic-worker onBench"><div class="stress-bar"><div class="stress"></div></div</div>');
 		updateScore();
-		basicWorker = basicWorker + 15;
-		$(".worker-buy span").html(basicWorker)
+		buyWorker = buyWorker + 15;
+		$(".worker-buy span").html(buyWorker)
+
+		count++
+		workerList['w' + count] = {stress: 0}
 	}
 });
 

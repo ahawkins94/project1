@@ -5,10 +5,10 @@ var $bench = $(".bench");
 var $workers = $(".workers");
 var modWidth = 1;
 var modHeight = 1;
-var buyWorker = 0;
-var buyFeeder = 10;
-var buyDoctor = 15;
-var buyTaskmaster = 20;
+var buyWorker = 10;
+var buyFeeder = 20;
+var buyDoctor = 35;
+var buyTaskmaster = 50;
 var count = 0;
 var $basicWorker;
 var $stress = $(".stress");
@@ -173,7 +173,7 @@ function taskmasterFunction(){
 				}else if (workerList[id] < 85){
 					addMoreSize();
 				}else if (workerList[id] > 85){
-					decreaseEvenMoreSize();
+					addSize();
 				}
 
 			} else if ($this.hasClass('onBench')){
@@ -210,7 +210,25 @@ function instructionsText(){
 
 $("#worker-mouseover").hover(function(){
     $(".instructions").prepend('<div class="basic-worker desc-img"></div>')
-	$(".instructions p").html("The worker is as it sounds - a worker. Paid for in slime and looks suspiciously like slime...")
+	$(".instructions p").html("The worker is as it sounds - a worker. He will feed your slime for you but don't let him get too stressed! Paid for in slime with a complexion that looks suspiciously like slime...")
+    $(".instructions").stop().slideDown();
+ }, instructionsText)
+
+$("#feeder-mouseover").hover(function(){
+    $(".instructions").prepend('<div class="slime-feeder desc-img"></div>')
+	$(".instructions p").html("A professional slime feeder, he's done this before. He will feed your slime with more efficiency than a basic worker.")
+    $(".instructions").stop().slideDown();
+ }, instructionsText)
+
+$("#doctor-mouseover").hover(function(){
+    $(".instructions").prepend('<div class="slime-doctor desc-img"></div>')
+	$(".instructions p").html("After years of study, the doctor has a PHD in slime. The slime doctor comes at a premium but knows the exact biology of slime. Being a doctor is stressful work! Watch his stress.")
+    $(".instructions").stop().slideDown();
+ }, instructionsText)
+
+$("#taskmaster-mouseover").hover(function(){
+    $(".instructions").prepend('<div class="slime-taskmaster desc-img"></div>')
+	$(".instructions p").html("The taskmaster has all the qualifications of the doctor. Centuries of working with slime mean the taskmaster is less prone to stress ")
     $(".instructions").stop().slideDown();
  }, instructionsText)
 
@@ -271,7 +289,7 @@ $(".taskmaster-buy").click(function(){
 		modHeight -= buyTaskmaster;
 		$bench.append('<div class="slime-taskmaster onBench" id="w' + count + '"><div class="stress-bar onBench"><div class="stress" label="w' + count + '"></div></div></div</div>');
 		updateScore();
-		buyTaskmaster += 50;
+		buyTaskmaster = (buyTaskMaster * 1.5);
 		$(".taskmaster-buy span").html(buyTaskmaster)
 
 		workerList['w' + count] = 0;
@@ -298,7 +316,7 @@ $(".doctor-buy").click(function(){
 		modHeight -= buyDoctor;
 		$bench.append('<div class="slime-doctor onBench" id="w' + count + '"><div class="stress-bar onBench"><div class="stress" label="w' + count + '"></div></div></div</div>');
 		updateScore();
-		buyDoctor = buyDoctor + 50;
+		buyDoctor = (buyDoctor * 1.5);
 		$(".doctor-buy span").html(buyDoctor)
 
 		workerList['w' + count] = 0;
@@ -325,7 +343,7 @@ $(".feeder-buy").click(function(){
 		modHeight -= buyFeeder;
 		$bench.append('<div class="slime-feeder onBench" id="w' + count + '"><div class="stress-bar onBench"><div class="stress" label="w' + count + '"></div></div></div</div>');
 		updateScore();
-		buyFeeder = buyFeeder + 30;
+		buyFeeder = (buyFeeder * 1.5);
 		$(".feeder-buy span").html(buyFeeder)
 
 		workerList['w' + count] = 0;
@@ -351,7 +369,7 @@ $(".worker-buy").click(function(){
 	modHeight -= buyWorker;
 	$bench.append('<div class="basic-worker onBench" id="w' + count + '"><div class="stress-bar onBench"><div class="stress" label="w' + count + '"></div></div></div</div>');
 	updateScore();
-	buyWorker = buyWorker + 2;
+	buyWorker = (buyWorker * 1.5);
 	$(".worker-buy span").html(buyWorker)
 
 	workerList['w' + count] = 0;

@@ -268,7 +268,17 @@ h3{
     overflow: initial;  
 }
 
-
+/*#worker-mouseover {
+	position: relative;
+	visibility: hidden;
+	background: rgba(54, 25, 25, .0);
+	height: 40px;
+	width: 300px;
+    right: 0px;
+    top: 0px;
+    font-size: 20px;
+    border-radius: 5px;
+}*/
 
 
 

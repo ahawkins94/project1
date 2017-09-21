@@ -9,13 +9,13 @@ var buyWorker = 0;
 var buyFeeder = 10;
 var buyDoctor = 15;
 var buyTaskmaster = 20;
-var count = 0
+var count = 0;
 var $basicWorker;
 var $stress = $(".stress");
 var stressBar = 0.4;
 var workerList = {
-
 }
+
 var up = true;
 
 var stressWidth = 0;
@@ -49,24 +49,30 @@ function addEvenMoreSize(){
 }
 
 function decreaseSize(){
-	($slime).width(modWidth);
-	modWidth -= 0.1;
-	($slime).height(modHeight);
-	modHeight -= 0.1;
+	if (modWidth > 0) {
+		($slime).width(modWidth);
+		modWidth -= 0.1;
+		($slime).height(modHeight);
+		modHeight -= 0.1;
+	}
 }
 
 function decreaseMoreSize(){
-	($slime).width(modWidth);
-	modWidth -= 0.5;
-	($slime).height(modHeight);
-	modHeight -= 0.5;
+	if (modWidth > 0) {
+		($slime).width(modWidth);
+		modWidth -= 0.5;
+		($slime).height(modHeight);
+		modHeight -= 0.5;
+	}
 }
 
 function decreaseEvenMoreSize(){
-	($slime).width(modWidth);
-	modWidth -= 1;
-	($slime).height(modHeight);
-	modHeight -= 1;
+	if (modWidth > 0) {	
+		($slime).width(modWidth);
+		modWidth -= 1;
+		($slime).height(modHeight);
+		modHeight -= 1;
+	}
 }
 
 function workerFunction(){
@@ -195,6 +201,18 @@ function addToWorkers(){
 	$this.addClass('offBench').removeClass('onBench')
 	$this.find("*").addClass('offBench').removeClass('onBench')
 }
+
+function instructionsText(){
+ 	$(".instructions").stop().slideUp()
+ 	$('.desc-img').remove();
+ 	$(".instructions p").html("Oh what's that in the bottom left? That spec.... That's a slime! Slimes are a valuable asset - even a currency! <br><br>But yours is just a baby, he needs feeding. Click the slime food in the top left corner to feed it.<br><br>Once you have enough slime you can spend your slime to employ workers in the shop! Put them to work by clicking them when they are on the bench.<br><br>Be careful though, tending to slimes is stressful work. If your workers get too stressed they will neglect the slime!")
+}
+
+$("#worker-mouseover").hover(function(){
+    $(".instructions").prepend('<div class="basic-worker desc-img"></div>')
+	$(".instructions p").html("stuffff")
+    $(".instructions").stop().slideDown();
+ }, instructionsText)
 
 $(".bench").on('click', ".basic-worker", function(){
 	$this = $(this);
@@ -386,11 +404,12 @@ setInterval(function slimeDecrease(e){
 	}, 200);
 
 setInterval(function(){
-		workerFunction()
-		feederFunction();
-		doctorFunction();
-		taskmasterFunction();
-		updateScore();
+	workerFunction()
+	feederFunction();
+	doctorFunction();
+	taskmasterFunction();
+	updateScore();
+
 }, 1000);
 		
 

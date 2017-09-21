@@ -19,5 +19,16 @@ The languages used are HTML, CSS and Javascript.
 
 ## Screenshots
 
+Gameplay:
+
+(https://github.com/ahawkins94/project1/blob/master/images/gameplay.png?raw=true)
+
+Win Message:
+
+
+(https://github.com/ahawkins94/project1/blob/master/images/winmessage.png?raw=true)
+
+Yes, it is meant to look that bad and yes, comic sans was a conscious decision.
+
 
 

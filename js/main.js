@@ -15,7 +15,6 @@ var $basicWorker;
 var $stress = $(".stress");
 var workerList = {
 }
-//Functions list
 //Modify slime sizes
 function addSize(){
 	($slime).width(modWidth);
@@ -63,6 +62,14 @@ function decreaseEvenMoreSize(){
 		modWidth -= 1;
 		($slime).height(modHeight);
 		modHeight -= 1;
+	}
+}
+function decreaseWayMoreSize(){
+	if (modWidth > 0) {	
+		($slime).width(modWidth);
+		modWidth -= 3;
+		($slime).height(modHeight);
+		modHeight -= 3;
 	}
 }
 //Worker stress functions
@@ -205,7 +212,7 @@ $("#doctor-mouseover").hover(function(){
  }, instructionsText)
 $("#taskmaster-mouseover").hover(function(){
     $(".instructions").prepend('<div class="slime-taskmaster desc-img"></div>')
-	$(".instructions p").html("The taskmaster has all the qualifications of the doctor. Centuries of working with slime mean the taskmaster is less prone to stress ")
+	$(".instructions p").html("The taskmaster has all the qualifications of the doctor. Centuries of working with slime mean the taskmaster is less prone to stress.")
     $(".instructions").stop().slideDown();
  }, instructionsText)
 $("#star-mouseover").hover(function(){
@@ -260,7 +267,7 @@ $(".taskmaster-buy").click(function(){
 		modHeight -= buyTaskmaster;
 		$bench.append('<div class="slime-taskmaster onBench" id="w' + count + '"><div class="stress-bar onBench"><div class="stress" label="w' + count + '"></div></div></div</div>');
 		buyTaskMaster = (buyTaskMaster * 1.5);
-		$(".taskmaster-buy span").html(buyTaskmaster)
+		$(".taskmaster-buy span").html(Math.ceil(buyTaskmaster))
 		workerList['w' + count] = 0;
 		$slimeTaskmaster = $('.slime-taskmaster');
 		$stress = $(".stress");
@@ -281,7 +288,7 @@ $(".doctor-buy").click(function(){
 		$bench.append('<div class="slime-doctor onBench" id="w' + count + '"><div class="stress-bar onBench"><div class="stress" label="w' + count + '"></div></div></div</div>');
 		updateScore();
 		buyDoctor = (buyDoctor * 1.5);
-		$(".doctor-buy span").html(buyDoctor)
+		$(".doctor-buy span").html(Math.ceil(buyDoctor))
 		workerList['w' + count] = 0;
 		$slimeDoctor = $('.slime-doctor');
 		$stress = $(".stress");	
@@ -301,7 +308,7 @@ $(".feeder-buy").click(function(){
 		$bench.append('<div class="slime-feeder onBench" id="w' + count + '"><div class="stress-bar onBench"><div class="stress" label="w' + count + '"></div></div></div</div>');
 		updateScore();
 		buyFeeder = (buyFeeder * 1.5);
-		$(".feeder-buy span").html(buyFeeder)
+		$(".feeder-buy span").html(Math.ceil(buyFeeder))
 		workerList['w' + count] = 0;
 		$slimeFeeder = $('.slime-feeder');
 		$stress = $(".stress");
@@ -321,7 +328,7 @@ $(".worker-buy").click(function(){
 	$bench.append('<div class="basic-worker onBench" id="w' + count + '"><div class="stress-bar onBench"><div class="stress" label="w' + count + '"></div></div></div</div>');
 	updateScore();
 	buyWorker = (buyWorker * 1.5);
-	$(".worker-buy span").html(buyWorker)
+	$(".worker-buy span").html(Math.ceil(buyWorker))
 	workerList['w' + count] = 0;
 	$basicWorker = $('.basic-worker');
 	$stress = $(".stress");
@@ -332,7 +339,7 @@ $(".star-buy").click(function(){
 		$("#slime").remove();
 		$("workers").remove();
 		$("#slime-container").append('<div class="gold-star"></div>');
-		$bench.append('<div class="win-message"><h3>winna winna chickin dinna</h3></div>');
+		$bench.append('<div class="win-message"><h1>winna winna chickin dinna</h1><h3>gold star for you <br>yes yesvery nice well done</h3></div>');
 		updateScore();
 	}
 })
@@ -365,7 +372,10 @@ $(".shop-minimize").click(function(){
 })
 //Interval that balances with slime size
 setInterval(function slimeDecrease(e){
-	if ($("#slime").width() > 100){
+	if ($("#slime").width() > 500){
+				decreaseWayMoreSize();
+				updateScore();
+		}else if ($("#slime").width() > 100){
 				decreaseEvenMoreSize();
 				updateScore();
 		}else if ($("#slime").width() > 50){

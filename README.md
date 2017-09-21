@@ -17,4 +17,7 @@ The aim of the game is to grow your slime as large as possible. When the slime r
 ## Languages
 The languages used are HTML, CSS and Javascript.
 
+## Screenshots
+
+
 

@@ -266,7 +266,7 @@ $(".taskmaster-buy").click(function(){
 		($slime).height(modHeight);
 		modHeight -= buyTaskmaster;
 		$bench.append('<div class="slime-taskmaster onBench" id="w' + count + '"><div class="stress-bar onBench"><div class="stress" label="w' + count + '"></div></div></div</div>');
-		buyTaskmaster = (buyTaskmaster * 1.5);
+		buyTaskmaster = (buyTaskmaster * 1.25);
 		$(".taskmaster-buy span").html(Math.ceil(buyTaskmaster))
 		workerList['w' + count] = 0;
 		$slimeTaskmaster = $('.slime-taskmaster');
@@ -287,7 +287,7 @@ $(".doctor-buy").click(function(){
 		modHeight -= buyDoctor;
 		$bench.append('<div class="slime-doctor onBench" id="w' + count + '"><div class="stress-bar onBench"><div class="stress" label="w' + count + '"></div></div></div</div>');
 		updateScore();
-		buyDoctor = (buyDoctor * 1.5);
+		buyDoctor = (buyDoctor * 1.25);
 		$(".doctor-buy span").html(Math.ceil(buyDoctor))
 		workerList['w' + count] = 0;
 		$slimeDoctor = $('.slime-doctor');
@@ -307,7 +307,7 @@ $(".feeder-buy").click(function(){
 		modHeight -= buyFeeder;
 		$bench.append('<div class="slime-feeder onBench" id="w' + count + '"><div class="stress-bar onBench"><div class="stress" label="w' + count + '"></div></div></div</div>');
 		updateScore();
-		buyFeeder = (buyFeeder * 1.5);
+		buyFeeder = (buyFeeder * 1.25);
 		$(".feeder-buy span").html(Math.ceil(buyFeeder))
 		workerList['w' + count] = 0;
 		$slimeFeeder = $('.slime-feeder');
@@ -327,7 +327,7 @@ $(".worker-buy").click(function(){
 	modHeight -= buyWorker;
 	$bench.append('<div class="basic-worker onBench" id="w' + count + '"><div class="stress-bar onBench"><div class="stress" label="w' + count + '"></div></div></div</div>');
 	updateScore();
-	buyWorker = (buyWorker * 1.5);
+	buyWorker = (buyWorker * 1.25);
 	$(".worker-buy span").html(Math.ceil(buyWorker))
 	workerList['w' + count] = 0;
 	$basicWorker = $('.basic-worker');

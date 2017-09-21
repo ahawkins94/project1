@@ -55,8 +55,8 @@ h3{
 
 	position: absolute;
 	display: inline-block;
-    right: 343px;
-    top: 110px;
+    right: 40px;
+    top: 65px;
     font-family: 'Antic';font-size: 20px;
     height: 40px;
     width: 300px;
@@ -107,7 +107,7 @@ h3{
 .instructions{
 	position: absolute;
 	display: inline-block;
-	right: 0px; 
+	right: 150px; 
     top: 40px;
     font-family: 'Antic';font-size: 20px;
     height: 500px;

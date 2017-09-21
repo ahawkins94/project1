@@ -303,21 +303,19 @@ $(".shop-minimize").click(function(){
 
 setInterval(function slimeDecrease(e){
 
-	if ($("#slime").width() > 100){
-				decreaseEvenMoreSize();
-				
-				updateScore();
-				// clearInterval();
-		}else if ($("#slime").width() > 50){
-				decreaseMoreSize();
-				updateScore();
-				//clearInterval();
-		}else if ($("#slime").width() > 20){
+	if ($("#slime").width() > 22){
 				decreaseSize();
 				updateScore();
-				//clearInterval();
+				clearInterval();
+		}else if ($("#slime").width() > 100){
+				decreaseMoreSize();
+				updateScore();
+				clearInterval();
+		}else if ($("#slime").width() > 300){
+				decreaseEvenMoreSize();
+				updateScore();
+				clearInterval();
 		}
-	// clearInterval()
 	}, 200);
 
 setInterval(function(){
@@ -325,7 +323,7 @@ setInterval(function(){
 		feederFunction();
 		doctorFunction();
 		updateScore();
-		// clearInterval();
+		clearInterval();
 }, 1000);
 		
 

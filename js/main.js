@@ -9,7 +9,7 @@ var buyWorker = 10;
 var buyFeeder = 20;
 var buyDoctor = 35;
 var buyTaskmaster = 50;
-var buyStar = 0;
+var buyStar = 2000;
 var count = 0;
 var $basicWorker;
 var $stress = $(".stress");
@@ -206,7 +206,7 @@ function addToWorkers(){
 function instructionsText(){
  	$(".instructions").stop().slideUp()
  	$('.desc-img').remove();
- 	$(".instructions p").html("Oh what's that in the bottom left? That spec.... That's a slime! Slimes are a valuable asset - even a currency! <br><br>But yours is just a baby, he needs feeding. Click the slime food in the top left corner to feed it.<br><br>Once you have enough slime you can spend your slime to employ workers in the shop! Put them to work by clicking them when they are on the bench.<br><br>Be careful though, tending to slimes is stressful work. If your workers get too stressed they will neglect the slime!")
+ 	$(".instructions p").html("Oh what's that in the bottom left? That spec.... That's a slime! Slimes are a valuable asset - even a currency! <br><br>But yours is just a baby, he needs feeding. Click the slime food in the top left corner to feed it.<br><br>Once you have enough slime you can spend your slime to employ workers in the shop! Put them to work by clicking them when they are on the bench.<br><br>Be careful though, tending to slimes is stressful work. If your workers get too stressed they will neglect the slime! <br><br> If they get too stressed, click them again to give them a break. <br><br> The bigger the slime gets, the harder it is for it to maintain its mass. Be sure to keep that in consideration!")
 }
 
 $("#worker-mouseover").hover(function(){

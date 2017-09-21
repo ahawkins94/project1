@@ -387,7 +387,10 @@ $(".worker-buy").click(function(){
 
 $(".star-buy").click(function(){
 	if (modWidth > buyStar){
-		$("#slime").replaceWith($(".gold-star"))
+		$("#slime").remove();
+		$("workers").remove();
+		$("#slime-container").append('<div class="gold-star"></div>');
+		$bench.append('<div class="win-message"><h3>winna winna chickin dinna</h3></div>');
 		updateScore();
 	}
 })

@@ -24,6 +24,16 @@ h3{
 	height: 50px;
 }
 
+.mini-food{
+	background-image: url("/Users/tech-a60/project1/images/slimefood.png");
+	background-size: 25px;
+	position: absolute;
+	left: 50px;
+	top: 50px;
+	width: 25px;
+	height: 25px;
+}
+
 #slime-container{
 	position: absolute;	
 	display: inline-block;

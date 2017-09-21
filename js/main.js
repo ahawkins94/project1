@@ -293,6 +293,18 @@ $(".shop-minimize").click(function(){
   });
 
 ($slimeFood).click(function(){
+	var foodClone = $('<div class="mini-food"></div>');
+	$("body").append(foodClone);
+	foodClone.css(
+		"position", "absolute"
+	)
+	foodClone.animate({
+		left: 70,
+		top: 550,
+		opacity: 0
+	}, 1000, function(){
+		foodClone.remove()
+	})
 
 	addSize();
 	($slime).addClass('animated jello').delay(500).queue(function(){
@@ -305,19 +317,14 @@ setInterval(function slimeDecrease(e){
 
 	if ($("#slime").width() > 100){
 				decreaseEvenMoreSize();
-				
 				updateScore();
-				// clearInterval();
 		}else if ($("#slime").width() > 50){
 				decreaseMoreSize();
 				updateScore();
-				//clearInterval();
 		}else if ($("#slime").width() > 20){
 				decreaseSize();
 				updateScore();
-				//clearInterval();
 		}
-	// clearInterval()
 	}, 200);
 
 setInterval(function(){
@@ -325,7 +332,6 @@ setInterval(function(){
 		feederFunction();
 		doctorFunction();
 		updateScore();
-		// clearInterval();
 }, 1000);
 		
 

@@ -1,4 +1,3 @@
-
 var $slime = $("#slime");
 var $slimeFood = $("#slime-food");
 var sLeft = $slime.position();
@@ -9,6 +8,7 @@ var modHeight = 1;
 var buyWorker = 0;
 var buyFeeder = 10;
 var buyDoctor = 15;
+var buyTaskmaster = 20;
 var count = 0
 var $basicWorker;
 var $stress = $(".stress");
@@ -19,8 +19,6 @@ var workerList = {
 var up = true;
 
 var stressWidth = 0;
-
-
 
 function addSize(){
 	($slime).width(modWidth);
@@ -79,7 +77,6 @@ function workerFunction(){
 				var id = $this.closest('.basic-worker').attr('id');
 				workerList[id]++;
 				$this.css("width", "+=0.4px")
-				console.log(workerList[id])
 				if (workerList[id] > 100){
 					workerList[id] = 100;
 				}
@@ -156,6 +153,33 @@ function doctorFunction(){
 	})
 }
 
+function taskmasterFunction(){
+	$('.stress').each(function(i, v){
+		var $this = $(this);
+			if ($this.hasClass('offBench')){
+				var id = $this.closest('.slime-taskmaster').attr('id');
+				workerList[id]++;
+				if (workerList[id] > 100){
+					workerList[id] = 100;
+				}
+				if (workerList[id] < 50){
+					addEvenMoreSize();
+				}else if (workerList[id] < 85){
+					addMoreSize();
+				}else if (workerList[id] > 85){
+					decreaseEvenMoreSize();
+				}
+
+			} else if ($this.hasClass('onBench')){
+				var id = $this.closest('.slime-taskmaster').attr('id');
+				workerList[id]--;
+				if (workerList[id] < 0){
+					workerList[id] = 0;
+				}
+			}
+	})
+}
+
 function updateScore(){
 	$('#score').html(Math.round( $slime.width() * 10 ) / 10);	
 }
@@ -180,7 +204,6 @@ $(".bench").on('click', ".basic-worker", function(){
 $(".workers").on('click', ".basic-worker", function(){
 	$this = $(this);	
 	addToBench();
-	console.log($basicWorker[0].classList[1])
 });
 
 $(".bench").on('click', ".slime-feeder", function(){
@@ -201,6 +224,43 @@ $(".bench").on('click', ".slime-doctor", function(){
 $(".workers").on('click', ".slime-doctor", function(){
 	$this = $(this);	
 	addToBench();
+});
+
+$(".bench").on('click', ".slime-taskmaster", function(){
+	$this = $(this);
+	addToWorkers();
+});
+
+$(".workers").on('click', ".slime-taskmaster", function(){
+	$this = $(this);	
+	addToBench();
+});
+
+$(".taskmaster-buy").click(function(){
+	if (modWidth > buyTaskmaster){
+
+		$slime.animate({
+        width: '-=' + buyTaskmaster + 'px',
+        height: '-=' + buyTaskmaster + 'px'
+    }, 500);;
+
+		count++
+		
+		($slime).width(modWidth);
+		modWidth -= buyTaskmaster;
+
+		($slime).height(modHeight);
+		modHeight -= buyTaskmaster;
+		$bench.append('<div class="slime-taskmaster onBench" id="w' + count + '"><div class="stress-bar onBench"><div class="stress" label="w' + count + '"></div></div></div</div>');
+		updateScore();
+		buyTaskmaster += 50;
+		$(".taskmaster-buy span").html(buyTaskmaster)
+
+		workerList['w' + count] = 0;
+		$slimeTaskmaster = $('.slime-taskmaster');
+		$stress = $(".stress");
+	
+	}
 });
 
 $(".doctor-buy").click(function(){
@@ -253,8 +313,6 @@ $(".feeder-buy").click(function(){
 		workerList['w' + count] = 0;
 		$slimeFeeder = $('.slime-feeder');
 		$stress = $(".stress");
-	
-
 	}
 });
 
@@ -299,7 +357,7 @@ $(".shop-minimize").click(function(){
 		"position", "absolute"
 	)
 	foodClone.animate({
-		left: 70,
+		left: 153.78465270996094,
 		top: 550,
 		opacity: 0
 	}, 1000, function(){
@@ -331,6 +389,7 @@ setInterval(function(){
 		workerFunction()
 		feederFunction();
 		doctorFunction();
+		taskmasterFunction();
 		updateScore();
 }, 1000);
 		

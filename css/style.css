@@ -149,6 +149,16 @@ h3{
 	height: 67px;
 }
 
+.slime-taskmaster{
+	background-image: url("/Users/tech-a60/project1/images/slimetaskmaster.png");
+	background-size: 40px;
+	display:inline-block;
+	background-repeat: no-repeat;
+	position: relative;
+	width: 42px;
+	height: 67px;
+}
+
 .workers{
 	position: relative;
 	display:inline-block;

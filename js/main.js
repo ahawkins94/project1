@@ -51,25 +51,25 @@ function decreaseSize(){
 function decreaseMoreSize(){
 	if (modWidth > 0) {
 		($slime).width(modWidth);
-		modWidth -= 0.5;
+		modWidth -= 0.4;
 		($slime).height(modHeight);
-		modHeight -= 0.5;
+		modHeight -= 0.4;
 	}
 }
 function decreaseEvenMoreSize(){
 	if (modWidth > 0) {	
 		($slime).width(modWidth);
-		modWidth -= 1;
+		modWidth -= 0.7;
 		($slime).height(modHeight);
-		modHeight -= 1;
+		modHeight -= 0.7;
 	}
 }
 function decreaseWayMoreSize(){
 	if (modWidth > 0) {	
 		($slime).width(modWidth);
-		modWidth -= 3;
+		modWidth -= 1.5;
 		($slime).height(modHeight);
-		modHeight -= 3;
+		modHeight -= 1.5;
 	}
 }
 //Worker stress functions
@@ -266,7 +266,7 @@ $(".taskmaster-buy").click(function(){
 		($slime).height(modHeight);
 		modHeight -= buyTaskmaster;
 		$bench.append('<div class="slime-taskmaster onBench" id="w' + count + '"><div class="stress-bar onBench"><div class="stress" label="w' + count + '"></div></div></div</div>');
-		buyTaskMaster = (buyTaskMaster * 1.5);
+		buyTaskmaster = (buyTaskmaster * 1.5);
 		$(".taskmaster-buy span").html(Math.ceil(buyTaskmaster))
 		workerList['w' + count] = 0;
 		$slimeTaskmaster = $('.slime-taskmaster');

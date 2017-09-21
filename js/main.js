@@ -210,7 +210,7 @@ function instructionsText(){
 
 $("#worker-mouseover").hover(function(){
     $(".instructions").prepend('<div class="basic-worker desc-img"></div>')
-	$(".instructions p").html("stuffff")
+	$(".instructions p").html("The worker is as it sounds - a worker. Paid for in slime and looks suspiciously like slime...")
     $(".instructions").stop().slideDown();
  }, instructionsText)
 

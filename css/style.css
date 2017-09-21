@@ -15,7 +15,7 @@ h3{
 }
 
 #slime-food{
-	background-image: url("/Users/tech-a60/project1/images/slimefood.png");
+	background-image: url("../images/slimefood.png");
 	background-size: 50px;
 	position: absolute;
 	left: 50px;
@@ -25,7 +25,7 @@ h3{
 }
 
 .mini-food{
-	background-image: url("/Users/tech-a60/project1/images/slimefood.png");
+	background-image: url("../images/slimefood.png");
 	background-size: 25px;
 	position: absolute;
 	left: 50px;
@@ -140,7 +140,7 @@ h3{
 }
 
 .basic-worker{
-	background-image: url("/Users/tech-a60/project1/images/basicworker.png");
+	background-image: url("../images/basicworker.png");
 	background-size: 40px;
 	display:inline-block;
 	background-repeat: no-repeat;
@@ -150,7 +150,7 @@ h3{
 }
 
 .slime-taskmaster{
-	background-image: url("/Users/tech-a60/project1/images/slimetaskmaster.png");
+	background-image: url("../images/slimetaskmaster.png");
 	background-size: 40px;
 	display:inline-block;
 	background-repeat: no-repeat;
@@ -180,7 +180,7 @@ h3{
 }
 
 .slime-feeder{
-	background-image: url("/Users/tech-a60/project1/images/slimefeeder.png");
+	background-image: url("../images/slimefeeder.png");
 	background-size: 40px;
 	display:inline-block;
 	background-repeat: no-repeat;
@@ -190,7 +190,7 @@ h3{
 }
 
 .slime-doctor{
-	background-image: url("/Users/tech-a60/project1/images/slimedoctor.png");
+	background-image: url("../images/slimedoctor.png");
 	background-size: 40px;
 	display:inline-block;
 	background-repeat: no-repeat;
@@ -268,17 +268,9 @@ h3{
     overflow: initial;  
 }
 
-/*#worker-mouseover {
-	position: relative;
-	visibility: hidden;
-	background: rgba(54, 25, 25, .0);
-	height: 40px;
-	width: 300px;
-    right: 0px;
-    top: 0px;
-    font-size: 20px;
-    border-radius: 5px;
-}*/
+#worker-mouseover {
+
+}
 
 
 

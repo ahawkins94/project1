@@ -268,6 +268,15 @@ h3{
     overflow: initial;  
 }
 
+.gold-star {
+	background-image: url("../images/star.png");
+	background-size: 100px;
+	display:inline-block;
+	background-repeat: no-repeat;
+	position: relative;
+	width: 100px;
+	height: 100px;
+}
 
 
 

@@ -9,6 +9,7 @@ var buyWorker = 10;
 var buyFeeder = 20;
 var buyDoctor = 35;
 var buyTaskmaster = 50;
+var buyStar = 0;
 var count = 0;
 var $basicWorker;
 var $stress = $(".stress");
@@ -232,6 +233,12 @@ $("#taskmaster-mouseover").hover(function(){
     $(".instructions").stop().slideDown();
  }, instructionsText)
 
+$("#star-mouseover").hover(function(){
+    $(".instructions").prepend('<div class="gold-star desc-img"></div>')
+	$(".instructions p").html("The ancient tomes long forgotten by time fortold of a slime large enough to call down a star which will bring glory to the master of the slime.")
+    $(".instructions").stop().slideDown();
+ }, instructionsText)
+
 $(".bench").on('click', ".basic-worker", function(){
 	$this = $(this);
 	addToWorkers();
@@ -288,13 +295,13 @@ $(".taskmaster-buy").click(function(){
 		($slime).height(modHeight);
 		modHeight -= buyTaskmaster;
 		$bench.append('<div class="slime-taskmaster onBench" id="w' + count + '"><div class="stress-bar onBench"><div class="stress" label="w' + count + '"></div></div></div</div>');
-		updateScore();
-		buyTaskmaster = (buyTaskMaster * 1.5);
+		buyTaskMaster = (buyTaskMaster * 1.5);
 		$(".taskmaster-buy span").html(buyTaskmaster)
 
 		workerList['w' + count] = 0;
 		$slimeTaskmaster = $('.slime-taskmaster');
 		$stress = $(".stress");
+		updateScore();
 	
 	}
 });
@@ -377,6 +384,13 @@ $(".worker-buy").click(function(){
 	$stress = $(".stress");
 	}
 });
+
+$(".star-buy").click(function(){
+	if (modWidth > buyStar){
+		$("#slime").replaceWith($(".gold-star"))
+		updateScore();
+	}
+})
 
 $(".instructions-minimize").click(function(){
     $(".instructions").slideToggle();
